@@ -1,1 +1,6 @@
-console.log('Hello, NodeJS!');
+require( 'mootools' );
+console.log(
+   'Hello, {name}!'.substitute({
+      name : 'NodeJS'
+   })
+);

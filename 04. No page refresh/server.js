@@ -1,4 +1,5 @@
 var http = require('http');
+var fs   = require('fs');
 
 http.createServer( function ( request, response ) {
    var input = '';
@@ -7,7 +8,15 @@ http.createServer( function ( request, response ) {
    });
    
    request.on( 'end', function () {
-      response.writeHead( 200, { 'Content-type' : 'text/plain' } );
-      response.end( 'Hello, Node!' );
+      var ext = request.url.substr( request.url.lastIndexOf('.') + 1 );
+      response.writeHead( 200, {
+         'Content-type' : ({
+            html  : 'text/html',
+            css   : 'text/css',
+            js    : 'text/javascript',
+            jpg   : 'image'
+         })[ext] 
+      } );
+      response.end( fs.readFileSync( '.' + request.url ) );
    });
 }).listen( 8080, '127.0.0.1', function () {} );

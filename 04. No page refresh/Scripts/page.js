@@ -85,27 +85,27 @@ MyWebsite.Page = {
       xhr.onload = function () {
          callback( this.responseText );
       };
+      xhr.setRequestHeader( 'x-requested-with', 'XMLHttpRequest' );
       xhr.send();
    },
    
    /**
     * @method updateContent
     * 
-    * Receives the new content as HTML string and takes care to replace existing
+    * Receives the new content as JSON string and takes care to replace existing
     * with this one.
     * 
     * @param  {String} path
-    * @param  {String} html
+    * @param  {String} json
     */
-   updateContent : function ( path, html ) {
-      var temp = document.createElement('div');
-      temp.innerHTML = html;
+   updateContent : function ( path, json ) {
+      json = JSON.parse( json );
       // update image
-      document.getElementById('header').querySelector('img').src = temp.querySelector('#header img').src;
+      document.getElementById('header').querySelector('img').src = json.image;
       // update main content
-      document.getElementById('content').innerHTML = temp.querySelector('#content').innerHTML;
+      document.getElementById('content').innerHTML = json.content;
       // change history state
-      this.updateHistory( path, temp.querySelector('title').innerHTML );
+      this.updateHistory( path, json.title );
    },
    
    /**

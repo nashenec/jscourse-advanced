@@ -64,7 +64,7 @@ MyWebsite.Page = {
     * @param  {String} url
     */
    changeContent : function ( url ) {
-      this.getContent( url, this.updateContent.bind(this) );
+      this.getContent( url, this.updateContent.bind(this, url) );
    },
    
    /**
@@ -90,15 +90,33 @@ MyWebsite.Page = {
     * Receives the new content as HTML string and takes care to replace existing
     * with this one.
     * 
+    * @param  {String} path
     * @param  {String} html
     */
-   updateContent : function ( html ) {
+   updateContent : function ( path, html ) {
       var temp = document.createElement('div');
       temp.innerHTML = html;
       // update image
       document.getElementById('header').querySelector('img').src = temp.querySelector('#header img').src;
       // update main content
       document.getElementById('content').innerHTML = temp.querySelector('#content').innerHTML;
+      // change history state
+      this.updateHistory( path, temp.querySelector('title').innerHTML );
+   },
+   
+   /**
+    * @method updateHistory
+    * 
+    * Pushes history state & updates browser title
+    * 
+    * @param  {String} path
+    * @param  {String} title
+    */
+   updateHistory : function ( path, title ) {
+      if ( history.pushState ) {
+         history.pushState( null, title, path );
+      }
+      document.title = title;
    }
    
 };

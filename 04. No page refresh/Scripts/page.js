@@ -1,3 +1,7 @@
+if ( location.hash && location.hash.indexOf('#http') === 0 ) {
+   location = location.hash.substr(1);
+}
+
 // namespace
 MyWebsite = window.MyWebsite || {};
 
@@ -115,6 +119,8 @@ MyWebsite.Page = {
    updateHistory : function ( path, title ) {
       if ( history.pushState ) {
          history.pushState( null, title, path );
+      } else {
+         location.hash = path;
       }
       document.title = title;
    }

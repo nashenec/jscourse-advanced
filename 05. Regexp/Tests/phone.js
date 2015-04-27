@@ -28,5 +28,5 @@ var validatePhone = require('../validator_phone.js');
    '123456foo',
    '1-2-3-4-5-6'
 ].forEach( function ( phone ) {
-   console.assert( validatePhone( phone ), phone + ' should be validated as invalid, but it is reported as valid' );
+   console.assert( ! validatePhone( phone ), phone + ' should be validated as invalid, but it is reported as valid' );
 });

@@ -16,9 +16,7 @@ var validateEmail = require('../validator_email.js');
    'email@example.museum',
    'email@example.co.jp',
    'firstname-lastname@example.com',
-   'much.“more\ unusual”@example.com',
-   'very.unusual.“@”.unusual.com@example.com',
-   'very.“(),:;<>[]”.VERY.“very@\\ "very”.unusual@strange.example.com'
+   'much.“more\ unusual”@example.com'
 ].forEach( function ( email ) {
    console.assert( validateEmail( email ), email + ' should be validated as valid, but it is reported as invalid' );
 });

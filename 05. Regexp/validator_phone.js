@@ -1,8 +1,6 @@
 if ( typeof module != 'undefined' ) {
    // NodeJS
-   module.exports = function () {
-      return validatePhone;
-   }
+   module.exports = validatePhone;
 }
 
 function validatePhone( phone ) {

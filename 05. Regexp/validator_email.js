@@ -4,5 +4,5 @@ if ( typeof module != 'undefined' ) {
 }
 
 function validateEmail( email ) {
-   return false;
+   return /^[a-z][\w\-\.]{2,}@[a-z\d\-]+\.[a-z]{2,8}$/i.test( email );
 }

@@ -4,5 +4,5 @@ if ( typeof module != 'undefined' ) {
 }
 
 function validatePhone( phone ) {
-   return false;
+   return /^\+?[\d\s\-]{3,16}$/.test( phone );
 }

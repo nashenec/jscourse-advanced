@@ -1,8 +1,6 @@
 if ( typeof module != 'undefined' ) {
    // NodeJS
-   module.exports = function () {
-      return validateEmail;
-   }
+   module.exports = validateEmail;
 }
 
 function validateEmail( email ) {
